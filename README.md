@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/vue-playing-card.svg)](https://www.npmjs.com/package/vue-playing-card) [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
-> Simple playing card component, for 52-card French card decks
+> Simple Vue component for displaying playing cards, for 52-card French card decks
 
 ## Installation
 
@@ -17,8 +17,6 @@ npm install --save vue-playing-card
 ```js
 import Vue from 'vue'
 import VuePlayingCard from 'vue-playing-card'
-// You need a specific loader for CSS files like https://github.com/webpack/css-loader
-import 'vue-playing-card/dist/vue-playing-card.css'
 
 Vue.use(VuePlayingCard)
 ```
@@ -28,11 +26,9 @@ Vue.use(VuePlayingCard)
 ```html
 <!-- Include after Vue -->
 <!-- Local files -->
-<link rel="stylesheet" href="vue-playing-card/dist/vue-playing-card.css"></link>
 <script src="vue-playing-card/dist/vue-playing-card.js"></script>
 
 <!-- From CDN -->
-<link rel="stylesheet" href="https://unpkg.com/vue-playing-card/dist/vue-playing-card.css"></link>
 <script src="https://unpkg.com/vue-playing-card"></script>
 ```
 

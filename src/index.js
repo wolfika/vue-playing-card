@@ -8,6 +8,9 @@ function plugin (Vue) {
 function createSpriteElement() {
   const spriteElement = document.createElement('div');
   spriteElement.innerHTML = sprite;
+  spriteElement.style.height = 0;
+  spriteElement.style.position = 'absolute';
+  spriteElement.style.width = 0;
   document.body.appendChild(spriteElement);
 }
 

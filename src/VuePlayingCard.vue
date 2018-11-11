@@ -1,20 +1,18 @@
 <template>
-    <div class="card" :class="{'card--back': isCovered}">
-        <p>rank: {{rank}}</p>
-        <p>suit: {{suit}}</p>
-        <p>isCovered: {{isCovered}}</p>
-
-        <svg class="icon">
-            <use :xlink:href="signatureWithHash"></use>
-        </svg>
-    </div>
+  <svg :class="[cssClassBase, signatureClass]" :width="computedWidth" :height="computedHeight">
+    <use :xlink:href="uppercaseSignatureWithHash"></use>
+  </svg>
 </template>
 
 <script>
 import playingCardSignature from "playing-card-signature";
 
-const RANKS = ["a", 2, 3, 4, 5, 6, 7, 8, 9, "t", "j", "q", "k"];
-const SUITS = ["c", "d", "h", "s"];
+const validateSizeProp = (sizeValue) => {
+  return typeof sizeValue === 'number' || (typeof sizeValue === 'string' && sizeValue.endsWith('px'));
+};
+
+const DEFAULT_WIDTH = 200;
+const DEFAULT_HEIGHT = 280;
 
 export default {
   name: "VuePlayingCard",
@@ -36,11 +34,22 @@ export default {
     cover: {
       default: false,
       type: Boolean
-    }
+    },
+    width: {
+      default: null,
+      type: [Number, String],
+      validator: validateSizeProp,
+    },
+    height: {
+      default: null,
+      type: [Number, String],
+      validator: validateSizeProp,
+    },
   },
   data() {
     return {
-      parsedSignature: null
+      cssClassBase: 'vue-playing-card',
+      parsedSignature: null,
     };
   },
   created() {
@@ -65,31 +74,52 @@ export default {
 
       return this.parsedSignature.suit.toUpperCase();
     },
-    signatureWithHash() {
-      if (!this.parsedSignature || this.parsedSignature === null) {
-        return `#cover`;
+    computedSignature() {
+      if (
+        this.isCovered ||
+        !this.parsedSignature ||
+        this.parsedSignature === null
+      ) {
+        return 'cover';
       }
 
-      return `#${this.parsedSignature.signature.toUpperCase()}`;
+      return `${this.parsedSignature.signature}`;
+    },
+    uppercaseSignatureWithHash() {
+      return `#${this.computedSignature.toUpperCase()}`;
+    },
+    signatureClass() {
+      return `${this.cssClassBase}--${this.computedSignature}`;
     },
     isCovered() {
       return this.cover || !this.signature;
-    }
+    },
+    computedWidth() {
+      let computedValue = parseInt(this.width, 10);
+
+      if (computedValue === 0 || Number.isNaN(computedValue)) {
+        if (this.height !== null) {
+          computedValue = this.height * (DEFAULT_WIDTH / DEFAULT_HEIGHT);
+        } else {
+          computedValue = DEFAULT_WIDTH; // no width or height is specified, use default width
+        }
+      }
+
+      return String(computedValue);
+    },
+    computedHeight() {
+      let computedValue = parseInt(this.height, 10);
+
+      if (computedValue === 0 || Number.isNaN(computedValue)) {
+        if (this.width !== null) {
+          computedValue = this.width * (DEFAULT_HEIGHT / DEFAULT_WIDTH);
+        } else {
+          computedValue = DEFAULT_HEIGHT; // no width or height is specified, use default height
+        }
+      }
+
+      return String(computedValue);
+    },
   }
 };
 </script>
-
-<style scoped>
-.vue-playing-card {
-  display: block;
-  width: 400px;
-  margin: 25px auto;
-  border: 1px solid #ccc;
-  background: #eaeaea;
-  text-align: center;
-  padding: 25px;
-}
-.vue-playing-card p {
-  margin: 0 0 1em;
-}
-</style>

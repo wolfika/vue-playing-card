@@ -1,6 +1,6 @@
 {
   "name": "vue-playing-card",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Simple playing card component, for 52-card French card decks",
   "author": "Máté Farkas <info@wolfika.eu>",
   "main": "dist/vue-playing-card.common.js",

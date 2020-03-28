@@ -47,7 +47,7 @@ Vue.use(VuePlayingCard);
 ```
 
 ```html
-<vue-playing-card signature="as" width="300"></vue-playing-card>
+<vue-playing-card signature="as" :width="300"></vue-playing-card>
 ```
 
 ## Props

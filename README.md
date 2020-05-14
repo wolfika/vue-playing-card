@@ -78,7 +78,7 @@ Sets the height of each card component, in pixels. If `string` given, the number
 
 ## Card sizing
 
-Cards have a default size of `200x280` pixels. They can be resized using *either* the `width` or `height` props. If one of these props is given, the other prop is calculated from it using a ratio between the default width and height. E.g. if you give `width="140"`, the resulting card component will have a height of `196`, because `resultingHeight = userWidth * (DEFAULT_HEIGHT / DEFAULT_WIDTH)`. This calculation is useful if you want to customize the size of cards, but want to keep the aspect ratio of them.
+Cards have a default size of `200x280` pixels. They can be resized using _either_ the `width` or `height` props. If one of these props is given, the other prop is calculated from it using a ratio between the default width and height. E.g. if you give `width="140"`, the resulting card component will have a height of `196`, because `resultingHeight = userWidth * (DEFAULT_HEIGHT / DEFAULT_WIDTH)`. This calculation is useful if you want to customize the size of cards, but want to keep the aspect ratio of them.
 
 Using both `width` and `height` at the same time is allowed, but should only be used if you know what you're doing, as you will probably mess up the aspect ratio of the cards, and be left with an odd-looking card.
 

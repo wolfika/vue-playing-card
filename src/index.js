@@ -1,7 +1,7 @@
 import VuePlayingCard from './VuePlayingCard.vue';
 import sprite from './sprite.svg';
 
-function plugin (Vue) {
+function plugin(Vue) {
   Vue.component('vue-playing-card', VuePlayingCard);
 }
 
@@ -24,7 +24,4 @@ createSpriteElement();
 export default plugin;
 const version = '__VERSION__';
 // Export all components too
-export {
-  VuePlayingCard,
-  version
-};
+export { VuePlayingCard, version };

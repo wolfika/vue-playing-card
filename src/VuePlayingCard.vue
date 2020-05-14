@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import playingCardSignature from "playing-card-signature";
+import playingCardSignature from 'playing-card-signature';
 
 const validateSizeProp = (sizeValue) => {
   return typeof sizeValue === 'number' || (typeof sizeValue === 'string' && sizeValue.endsWith('px'));
@@ -15,7 +15,7 @@ const DEFAULT_WIDTH = 200;
 const DEFAULT_HEIGHT = 280;
 
 export default {
-  name: "VuePlayingCard",
+  name: 'VuePlayingCard',
   props: {
     signature: {
       default: null,
@@ -24,16 +24,16 @@ export default {
           return true;
         }
 
-        if (typeof val !== "string") {
+        if (typeof val !== 'string') {
           return false;
         }
 
         return playingCardSignature.validate(val);
-      }
+      },
     },
     cover: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     width: {
       default: null,
@@ -62,24 +62,20 @@ export default {
   computed: {
     rank() {
       if (!this.parsedSignature) {
-        return "";
+        return '';
       }
 
       return this.parsedSignature.rank.toUpperCase();
     },
     suit() {
       if (!this.parsedSignature) {
-        return "";
+        return '';
       }
 
       return this.parsedSignature.suit.toUpperCase();
     },
     computedSignature() {
-      if (
-        this.isCovered ||
-        !this.parsedSignature ||
-        this.parsedSignature === null
-      ) {
+      if (this.isCovered || !this.parsedSignature || this.parsedSignature === null) {
         return 'cover';
       }
 
@@ -120,6 +116,6 @@ export default {
 
       return String(computedValue);
     },
-  }
+  },
 };
 </script>

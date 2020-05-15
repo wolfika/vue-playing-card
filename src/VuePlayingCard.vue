@@ -8,7 +8,7 @@
 import playingCardSignature from 'playing-card-signature';
 
 const validateSizeProp = (sizeValue) => {
-  return typeof sizeValue === 'number' || (typeof sizeValue === 'string' && sizeValue.endsWith('px'));
+  return typeof sizeValue === 'number' || typeof sizeValue === 'string';
 };
 
 const DEFAULT_WIDTH = 200;
@@ -52,12 +52,8 @@ export default {
       parsedSignature: null,
     };
   },
-  created() {
-    if (this.signature) {
-      this.parsedSignature = playingCardSignature.parse(this.signature);
-    } else {
-      this.parsedSignature = null;
-    }
+  mounted() {
+    this.parsedSignature = this.signature ? playingCardSignature.parse(this.signature) : null;
   },
   computed: {
     rank() {
@@ -79,7 +75,7 @@ export default {
         return 'cover';
       }
 
-      return `${this.parsedSignature.signature}`;
+      return this.parsedSignature.signature;
     },
     uppercaseSignatureWithHash() {
       return `#${this.computedSignature.toUpperCase()}`;

@@ -16,7 +16,25 @@ npm install --save vue-playing-card
 
 ## Usage
 
-### Bundler (Webpack, Rollup)
+### As a module
+
+#### Per-usage
+
+```html
+<template>
+  <vue-playing-card cover />
+</template>
+
+<script>
+import VuePlayingCard from 'vue-playing-card';
+
+export default {
+  components: { VuePlayingCard }
+};
+</script>
+```
+
+#### Mount globally
 
 ```js
 import Vue from 'vue';
@@ -25,15 +43,15 @@ import VuePlayingCard from 'vue-playing-card';
 Vue.use(VuePlayingCard);
 ```
 
-### Browser
+### As a script
 
 ```html
 <!-- Include after Vue -->
 <!-- Local files -->
-<script src="vue-playing-card/dist/vue-playing-card.js"></script>
+<script src="vue-playing-card/dist/vue-playing-card.umd.min.js"></script>
 
 <!-- From CDN -->
-<script src="https://unpkg.com/vue-playing-card/dist/vue-playing-card.min.js"></script>
+<script src="https://unpkg.com/vue-playing-card/dist/vue-playing-card.umd.min.js"></script>
 ```
 
 ### After including
